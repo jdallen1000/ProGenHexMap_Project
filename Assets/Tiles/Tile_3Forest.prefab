@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6696992805521528079}
   - component: {fileID: 555845051836271893}
-  - component: {fileID: 8758773919045983907}
+  - component: {fileID: 5787717870441928995}
   m_Layer: 0
-  m_Name: Tile_2Plains
+  m_Name: Tile_3Forest
   m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 2747690628134850419, guid: a9716c16a44a94eed9b5c90fbf4d9bdd, type: 3}
-  m_Color: {r: 0.53129613, g: 0.7830189, b: 0.48384658, a: 1}
+  m_Color: {r: 0.23673905, g: 0.3773585, b: 0.23673905, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8758773919045983907
+--- !u!114 &5787717870441928995
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,7 +94,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2754691461018223296}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65c8843a49cf957459a16797834cc31c, type: 3}
+  m_Script: {fileID: 11500000, guid: 03f563b53a0644f4e81de03881794786, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weight: 1
+  tileType: 1

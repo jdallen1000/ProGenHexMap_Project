@@ -7,7 +7,7 @@ public class PerlinGridGen : MonoBehaviour
     Dictionary<int, GameObject> tileset;
     Dictionary<int, GameObject> tile_groups;
     public GameObject prefab_sea;
-    public GameObject prefab_sand;
+    //public GameObject prefab_sand;
     public GameObject prefab_plains;
     public GameObject prefab_forest;
     public GameObject prefab_hills;
@@ -46,11 +46,11 @@ public class PerlinGridGen : MonoBehaviour
 
         tileset = new Dictionary<int, GameObject>();
         tileset.Add(0, prefab_sea);
-        tileset.Add(1, prefab_sand);
-        tileset.Add(2, prefab_plains);
-        tileset.Add(3, prefab_forest);
-        tileset.Add(4, prefab_hills);
-        tileset.Add(5, prefab_mountains);
+       // tileset.Add(1, prefab_sand);
+        tileset.Add(1, prefab_plains);
+        tileset.Add(2, prefab_forest);
+        tileset.Add(3, prefab_hills);
+        tileset.Add(4, prefab_mountains);
     }
 
     void CreateTileGroups()
@@ -96,9 +96,9 @@ public class PerlinGridGen : MonoBehaviour
 
     int GetIdUsingPerlin(float x, float y)
     {
-        /** Using a grid coordinate input, generate a Perlin noise value to be
-            converted into a tile ID code. Rescale the normalized Perlin value
-            to the number of tiles available. **/
+       /** Using a grid coordinate input, generate a Perlin noise value to be
+           converted into a tile ID code. Rescale the normalized Perlin value
+           to the number of tiles available. **/
 
        /** old perlin
         
@@ -163,11 +163,19 @@ public class PerlinGridGen : MonoBehaviour
 
     float EasingFunction(float t, float factor)
     {
-        // t = t * t * t;
+        //t = t * t * t;
         //return t * factor;
-        //t = Mathf.Pow(t / factor, 2);
-        t = t < 0.5 ? 4 * t * t * t : 1 - Mathf.Pow(-2 * t + 2, 3) / 2;
-        return t * factor;
-        // return t;
+        // t = Mathf.Pow(t / factor, 2);
+        //t = t < 0.5 ? 4 * t * t * t : 1 - Mathf.Pow(-2 * t + 2, 3) / 2;
+        // t = Mathf.Sqrt(1 - Mathf.Pow(t - 1, 2));
+        // t = Mathf.Clamp01(t);
+
+
+        return t;//+ 0.5f;
+        
+        
+
+        //t = Mathf.Clamp01(t) * (1 / easingFactor);
+        //return t < 0.5 ? 4 * t * t * t : 1 - Mathf.Pow(-2 * t + 2, 3) / 2; ;
     }
 }

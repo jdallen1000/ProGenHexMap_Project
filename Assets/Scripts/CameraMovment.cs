@@ -7,6 +7,7 @@ public class CameraMovment : MonoBehaviour
     float xDirection;
     float yDirection;
     float zoom = 10;
+    public float speed = 1;
     public GameObject Camera;
     Camera thisCamera;
 
@@ -22,7 +23,7 @@ public class CameraMovment : MonoBehaviour
         xDirection = Input.GetAxisRaw("Horizontal");
         yDirection = Input.GetAxisRaw("Vertical");
         
-        transform.position += new Vector3(xDirection, yDirection);
+        transform.position += new Vector3(xDirection, yDirection)* speed * Time.deltaTime;
         zoom += Input.mouseScrollDelta.y * -1;
         zoom = Mathf.Clamp(zoom, 0.1f, zoom + 1);
         thisCamera.orthographicSize = zoom;
