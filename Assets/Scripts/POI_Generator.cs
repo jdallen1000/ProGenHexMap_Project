@@ -1,39 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class POI_Generator : MonoBehaviour
 {
-    public string tileTag = "Tile";
-    public TileTypes POI_GEN_tileTarget = TileTypes.Plains; 
-    public GameObject prefab_townHex;
+    public Tilemap tilemap;
+    public TileBase targetTile;  // The tile type you want to compare against
+    public TileBase POI_Tile;
     public int chance = 1;
 
-    private List<GameObject> tilesList = new List<GameObject>();
-
-    void FindTiles() // Finds all the tiles in the game and adds them to a tilelist
+    public void GeneratePOI()
     {
-        tilesList.Clear();
-        GameObject[] tiles = GameObject.FindGameObjectsWithTag(tileTag);
-        foreach (GameObject tile in tiles)
-        {
-            tilesList.Add(tile);
-        }
-    }
+        BoundsInt bounds = tilemap.cellBounds;
 
-    public void GeneratePOI() // Generates POIs on the Grid map on the tile types picked
-    {
-        FindTiles();
-        for (int x = 0; x < tilesList.Count; x++)
+        for (int x = bounds.xMin; x < bounds.xMax; x++)
         {
-            Tile tileComponent = tilesList[x].GetComponent<Tile>();
-            if (tileComponent != null && tileComponent.tileType == POI_GEN_tileTarget)
+            for (int y = bounds.yMin; y < bounds.yMax; y++)
             {
-                int tilePOIChance = Random.Range(1, chance + 1);
-                if (tilePOIChance == chance)
+                Vector3Int tilePosition = new Vector3Int(x, y, 0);
+                TileBase currentTile = tilemap.GetTile(tilePosition);
+
+                // Compare the current tile to the targetTile instance
+                if (currentTile == targetTile)
                 {
-                    Instantiate(prefab_townHex, tilesList[x].transform.position, Quaternion.identity, tilesList[x].transform.parent);
-                    Destroy(tilesList[x]);
+                    int tilePOIChance = Random.Range(1, chance + 1);
+                    if (tilePOIChance == chance)
+                    {
+                        tilemap.SetTile(tilePosition, POI_Tile);
+                    }
                 }
             }
         }
