@@ -10,11 +10,13 @@ public class CameraMovment : MonoBehaviour
     public float speed = 1;
     public GameObject Camera;
     Camera thisCamera;
+    public PerlinGridGenTilemap perlingrid;
 
     // Start is called before the first frame update
     void Start()
     {
         thisCamera = Camera.GetComponent<Camera>();
+        transform.position = new Vector3(perlingrid.map_width / 2, perlingrid.map_height / 2, -10);
     }
 
     // Update is called once per frame
@@ -25,7 +27,7 @@ public class CameraMovment : MonoBehaviour
         
         transform.position += new Vector3(xDirection, yDirection)* speed * Time.deltaTime;
         zoom += Input.mouseScrollDelta.y * -1;
-        zoom = Mathf.Clamp(zoom, 0.1f, zoom + 1);
+        zoom = Mathf.Clamp(zoom, 0.1f, 100);
         thisCamera.orthographicSize = zoom;
         
         

@@ -18,11 +18,10 @@ public class PerlinGridGenTilemap : MonoBehaviour
     public int map_width = 160;
     public int map_height = 90;
     public float scale = 20f;
-    public int octaves = 4;
+    private int octaves = 4;
     public float lacunarity = 2f;
     public float persistence = 0.5f;
-    public float easingFactor = 2f;
-    public float magnification = 7.0f;
+    private float easingFactor = 1f; 
     public int x_offset = 0;
     public int y_offset = 0;
 
@@ -82,9 +81,9 @@ public class PerlinGridGenTilemap : MonoBehaviour
             scaled_perlin = (tileset.Count - 1);
         }
         return Mathf.FloorToInt(scaled_perlin);
-    }
+    } // rescales the perlin to be used when choosing a tile to generate
 
-    float FractalPerlinNoise(float x, float y)
+    float FractalPerlinNoise(float x, float y) // generates fractal perlin noise 
     {
         float amplitude = 1f;
         float frequency = 1f;
@@ -112,22 +111,41 @@ public class PerlinGridGenTilemap : MonoBehaviour
         tilemap.SetTile(new Vector3Int(x, y, 0), tile);
     }
 
-    float EasingFunction(float t, float factor)
+    float EasingFunction(float t, float factor)  // unused easing fucntion for manuipulating the perlin noise
     {
         return t;
     }
 
-    public void ClearMap()
+    public void ClearMap() // clears the map of all tiles
     {
-        /** Clears all the tiles in the tilemap **/
-        for (int x = 0; x < map_width; x++)
-        {
-            for (int y = 0; y < map_height; y++)
-            {
-                tilemap.SetTile(new Vector3Int(x, y, 0), null);
-            }
-        }
+        tilemap.ClearAllTiles();
         noise_grid.Clear();
+    }
+
+    public void ReadXOffsetInput(string x)
+    {
+        if (x == null) { x_offset = 0; }
+        x_offset = int.Parse(x);
+
+    }
+
+    public void ReadYOffsetInput(string y)
+    {
+        if (y == null) { y_offset = 0; }
+        y_offset = int.Parse(y);
+    }
+
+    public void ReadMapWidthInput(string w)
+    {
+        if (w == null) { map_width = 0; }
+        map_width = int.Parse(w);
+
+    }
+
+    public void ReadMapHeightInput(string h)
+    {
+        if (h == null) { map_height = 0; }
+        map_height = int.Parse(h);
     }
 }
 

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55f747e8af38fbe4d8819f37be6fd5aa, type: 3}
   m_Name: Hex_TileWater
   m_EditorClassIdentifier: 
-  m_DefaultSprite: {fileID: 21300000, guid: 9e9b9f7d9b3bf9b4bba2a38f32e20f61, type: 3}
+  m_DefaultSprite: {fileID: 21300000, guid: e2b9be240eb08b24bbb803b6a564a355, type: 3}
   m_DefaultGameObject: {fileID: 0}
   m_DefaultColliderType: 2
   m_TilingRules: []
